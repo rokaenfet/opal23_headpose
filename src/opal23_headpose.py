@@ -28,7 +28,7 @@ class Opal23Headpose(Alignment):
         super().__init__()
         self.path = path
         self.model = None
-        self.device = None
+        self.device = 0
         self.width = 128
         self.height = 128
         self.rotation_mode = None
@@ -46,7 +46,10 @@ class Opal23Headpose(Alignment):
                             help='Target distance for each test data set (default: 1.0).')
         args, unknown = parser.parse_known_args(params)
         print(parser.format_usage())
-        self.device = args.gpu if args.gpu >= 0 else 'cpu'
+        if args.gpu >= 0 and torch.cuda.is_available():
+            self.device = args.gpu
+        else:
+            self.device = 'cpu'
         self.rotation_mode = args.rotation_mode
         self.target_dist = args.target_dist
 
@@ -124,7 +127,7 @@ class Opal23Headpose(Alignment):
         state_dict = torch.load(model_file)
         self.model.load_state_dict(state_dict)
         self.model.train(mode is Modes.TRAIN)
-        self.model.to(self.device)
+        self.model.to(device=0)
 
     def process(self, ann, pred):
         from scipy.spatial.transform import Rotation
