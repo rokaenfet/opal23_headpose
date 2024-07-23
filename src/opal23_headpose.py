@@ -45,7 +45,7 @@ class Opal23Headpose(Alignment):
         parser.add_argument('--target-dist', type=float, default=1.0,
                             help='Target distance for each test data set (default: 1.0).')
         args, unknown = parser.parse_known_args(params)
-        print(parser.format_usage())
+        # print(parser.format_usage())
         if args.gpu >= 0 and torch.cuda.is_available():
             self.device = args.gpu
         else:

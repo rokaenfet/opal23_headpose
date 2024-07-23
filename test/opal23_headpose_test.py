@@ -38,7 +38,7 @@ def parse_options():
     parser.add_argument('--save-image', '-i', dest='save_image', action="store_true",
                         help='Save processed images.')
     args, unknown = parser.parse_known_args()
-    print(parser.format_usage())
+    # print(parser.format_usage())
     input_data = args.input_data
     show_viewer = args.show_viewer
     save_image = args.save_image

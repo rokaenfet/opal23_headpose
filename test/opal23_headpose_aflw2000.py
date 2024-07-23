@@ -26,7 +26,7 @@ def parse_options():
     parser.add_argument('--anns-file', '-a', dest='anns_file', required=True,
                         help='Ground truth annotations file.')
     args, unknown = parser.parse_known_args()
-    print(parser.format_usage())
+    # print(parser.format_usage())
     anns_file = args.anns_file
     return unknown, anns_file
 
