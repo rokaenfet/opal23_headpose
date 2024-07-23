@@ -133,7 +133,8 @@ class Opal23Headpose(Alignment):
         from scipy.spatial.transform import Rotation
         for img_pred in pred.images:
             # Load image
-            image = cv2.imread(img_pred.filename)
+            # image = cv2.imread(img_pred.filename)
+            image = img_pred.image
             for obj_pred in img_pred.objects:
                 # Generate prediction
                 warped_image = self.preprocess(image, obj_pred.bb)
